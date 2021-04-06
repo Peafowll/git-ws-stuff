@@ -1,2 +1,2 @@
-print('helo')
-print("from earth probably")
+print('hello')
+print("world")
