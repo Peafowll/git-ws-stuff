@@ -104,7 +104,7 @@ enemyMaxHP=enemyStats[0]
 moves=['attack','heal','special']
 movesString=' '.join([str(elem) for elem in moves])
 playerSpecial=1
-
+shadowSneak=0
 #enemyStats = [ int(x) for x in enemyStats ]
 #playerStats = [ int(x) for x in playerStats ]
 while(deathCheck(playerStats[0],enemyStats[0])):
@@ -128,14 +128,35 @@ while(deathCheck(playerStats[0],enemyStats[0])):
     if moveChoice=='special' and playerClass=='ranger' and playerSpecial==1:
         enemyStats[0]=coup(enemyStats[0],enemyMaxHP,playerStats[1])
         playerSpecial=0
+        if enemyStats[0]<=0:
+            break
+    if moveChoice=='special' and playerClass=='mage' and playerSpecial==1:
+        wandFizzle=random.randint(1,10)
+        if wandFizzle>1 and wandFizzle<=4:
+            print("Incerci sa iti aduni energie pentru un spell mare, dar te distrage un fluture!")
+        if wandFizzle>4 and wandFizzle<=7:
+            print("Spellul tau mare e gata, dar din bageheta iese confeti.")
+        if wandFizzle >8 and wandFizzle<=10:
+            print("Spui cuvintele latine obscure ale spellului tau suprem gresit, iar bagheta se transforma in jeleu.")
+        if wandFizzle==1:
+            print("Incantezi perfect cel mai greu spell al tau si iese o bila de foc din bagheta!")
+            fireBallDmg=random.randint(80,100)
+            enemyStats[0]=enemyStats[0]=fireBallDmg
+            print(f'Dai un imens {fireBallDmg} damage!')
+    if moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
+        print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 2 atacuri!')
+        shadowSneak=2
     elif(moveChoice=='special' and playerSpecial==0):
         print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
-
     #enemymoves
     time.sleep(2)
     enemyChoice=1
     if(enemyChoice==1):
-        playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3])
+        if(shadowSneak==0):
+            playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3])
+        else:
+            print('Inamicul nu te-a vazut si te-a ratat!')
+            shadowSneak=shadowSneak-1
         if playerStats[0]<=0:
             break
     time.sleep(1)
