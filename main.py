@@ -4,8 +4,8 @@ def attack(hp,ad,selflck,enemylck):
     hitChance=selflck
     hit=random.randint(1+hitChance/2,hitChance*2)
     dodge=random.randint(dodgeChance/3,dodgeChance*1.25)
-    if(hit>dodge)
-        if(hit>=2*dodge)
+    if(hit>dodge):
+        if(hit>=2*dodge):
             finalDmg=0
             damageOne=random.randint(ad/2,ad)
             damageTwo=random.randint(ad/2,ad)
