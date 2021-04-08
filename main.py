@@ -1,4 +1,15 @@
-
+import random
+def attack(hp,ad,selflck,enemylck):
+    dodgeChance=enemylck
+    hitChance=selflck
+    hit=random.randint(1+hitChance/2,hitChance*2)
+    dodge=random.randint(dodgeChance/3,dodgeChance)
+    if(hit>dodge)
+        if(hit>=2*dodge)
+            hp=hp-2*ad
+        else:
+            hp=hp-ad
+    return hp
 
 classes={
     'warrior':[60,15,10,15],
