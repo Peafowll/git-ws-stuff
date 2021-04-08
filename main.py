@@ -1,13 +1,19 @@
 
 
-classes=
-{
-    warrior=[60,15,10,15]
-    mage=[30,10,60,20]
-    ranger=[35,35,15,15]
-    bandit=[40,20,10,30]
+classes={
+    'warrior':[60,15,10,15],
+    'mage':[30,10,60,20],
+    'ranger':[35,35,15,15],
+    'bandit':[30,20,5,45]
 }
 #gameloop
-playerstats=[5,5,5,5]
 name=str(input('Care este numele tau?'))
-print(f'')
+print(f'{name},alege-ti o clasa intre warrior, mage , ranger si bandit.')
+playerClassChoice=str(input('Ce clasa iti alegi?'))
+playerClassChoice=playerClassChoice.lower()
+while playerClassChoice not in classes:
+    playerClassChoice=str(input('Clasa selectata nu e in lista. Incearca din nou '))
+    playerClassChoice=playerClassChoice.lower()
+playerclass=playerClassChoice
+playerStats=classes[playerStats]
+print(playerclass)
