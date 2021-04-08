@@ -83,20 +83,9 @@ while(deathCheck(playerStats[0],enemyStats[0])):
     print(moveChoice.lower())
     moveChoice=moveChoice.lower()
     while(moveChoice not in moves):
-<<<<<<< HEAD
-        moveChoice=str(input('Misacre invalida.Poti alege din urmatoare lista de miscari:'+' '+movesString.capitalize()+' '))
-    if moveChoice=='attack':
-        enemyStats[0]= attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
-    
-
-attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
-#print(playerclass)
-
-=======
         moveChoice=str(input('Miscare invalida.Poti alege din urmatoarea lista de miscari:'+' '+movesString.capitalize()+' '))
     if moveChoice=='attack':
         enemyStats[0]= attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
     if moveChoice=='heal':
         playerStats[0]= heal(playerStats[0],playerStats[2])
 #print(playerclass)
->>>>>>> c9211065a312e21bc944e1624c7d967c0b2cc9b6
