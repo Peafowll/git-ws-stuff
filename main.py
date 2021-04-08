@@ -13,6 +13,7 @@ classes={
     'ranger':[35,35,15,15],
     'bandit':[30,15,5,50]
 }
+
 def attack(hp,ad,selflck,enemylck):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
@@ -27,16 +28,26 @@ def attack(hp,ad,selflck,enemylck):
             damageTwo=random.randint(int(ad/2),ad)
             finalDmg=damageOne+damageTwo
             hp=hp-finalDmg
-            print(f'Crit!\n')
+            print(f'Crit!\nAi dat {finalDmg} damage!')
         else:
             finalDmg=random.randint(int(ad/2),ad)
             hp=hp-finalDmg
+            print(f'Ai dat {finalDmg} damage!')
+    else:
+        print(f'Miss!')
     #print for debug
-    print(f'HP a ramas {hp} dupa un atac care a dat {finalDmg}')
+    #print(f'HP a ramas {hp} dupa un atac care a dat {finalDmg}')
     return hp
-#gameloop
-name=str(input('Care este numele tau?'))
 
+def deathCheck(playerHP,mobHP):
+    if(playerHP<=0 or mobHP<=0):
+        return False
+    return True
+
+
+
+#game
+name=str(input('Care este numele tau?'))
 print(f'{name},alege-ti o clasa intre warrior, mage , ranger si bandit.')
 playerClassChoice=str(input('Ce clasa iti alegi?'))
 playerClassChoice=playerClassChoice.lower()
@@ -45,10 +56,23 @@ while playerClassChoice not in classes:
     playerClassChoice=playerClassChoice.lower()
 playerClass=playerClassChoice
 playerStats=classes[playerClass]
+playerMana=[playerStats[2]]
 enemyStats=mobs['dummy']
+moves=['attack','heal','shield']
+movesString=' '.join([str(elem) for elem in moves])
 #enemyStats = [ int(x) for x in enemyStats ]
 #playerStats = [ int(x) for x in playerStats ]
-print(f'enemyhp={enemyStats[0]}, playerstr={playerStats[1]} enemyluck={enemyStats[3]} playerluck={playerStats[3]}')
+while(deathCheck(playerStats[0],enemyStats[0])):
+    print(f'Tu ai {playerStats[0]}HP iar dummy are {enemyStats[0]}HP')
+    moveChoice=str(input('Poti alege din urmatoare lista de miscari:'+' '+movesString.capitalize()+' '))
+    print(moveChoice.lower())
+    moveChoice=moveChoice.lower()
+    while(moveChoice not in moves):
+        moveChoice=str(input('Misacre invalida.Poti alege din urmatoare lista de miscari:'+' '+movesString.capitalize()+' '))
+    if moveChoice=='attack':
+        enemyStats[0]= attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
+    
+
 attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
 #print(playerclass)
 
