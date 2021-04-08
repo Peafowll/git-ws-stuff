@@ -75,6 +75,13 @@ def deathCheck(playerHP,mobHP):
     if(playerHP<=0 or mobHP<=0):
         return False
     return True
+def coup(ehp,emhp,pad):
+    coupDmg=emhp-ehp
+    coupDmg=coupDmg+random.randint(int(pad/1.5),int(pad*1.2))
+    ehp=ehp-coupDmg
+    print("Ai lovit un punct deja ranit al inamicului, dand "+str(coupDmg)+" damage")
+    return ehp
+
 
 
 #game
@@ -93,8 +100,11 @@ if playerClass == "warrior":
 maxHP=playerStats[0]
 enemyName, enemyStats = random.choice(list(mobs.items()))
 print(f"Te bati cu un {enemyName}.")
+enemyMaxHP=enemyStats[0]
 moves=['attack','heal','special']
 movesString=' '.join([str(elem) for elem in moves])
+playerSpecial=1
+
 #enemyStats = [ int(x) for x in enemyStats ]
 #playerStats = [ int(x) for x in playerStats ]
 while(deathCheck(playerStats[0],enemyStats[0])):
@@ -113,6 +123,14 @@ while(deathCheck(playerStats[0],enemyStats[0])):
         if playerStats[0]>maxHP:
             playerStats[0]=maxHP
             print('Nu poti sa iti dau heal peste hp maxim, deci stagnezi pe '+str(maxHP)+'HP')
+    if moveChoice=='special' and playerClass=='warrior':
+        print("Nu ai un atac special, dar dai extra damage sub jumate HP!")
+    if moveChoice=='special' and playerClass=='ranger' and playerSpecial==1:
+        enemyStats[0]=coup(enemyStats[0],enemyMaxHP,playerStats[1])
+        playerSpecial=0
+    elif(moveChoice=='special' and playerSpecial==0):
+        print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
+
     #enemymoves
     time.sleep(2)
     enemyChoice=1
