@@ -4,28 +4,28 @@ mobs={
     'dryad':[60,5,60,20],
     'chompy dingus':[50,10,10,10],
     'mind flayer':[70,15,30,20],
-    'goblin':[10,5,10,55]
+    'goblin':[10,5,10,55],
+    'dummy':[100,10,10,10]
 }
 classes={
-    'warrior':[60,15,10,15],
+    'warrior':[60,20,10,10],
     'mage':[30,10,60,20],
     'ranger':[35,35,15,15],
-    'bandit':[30,20,5,45]
+    'bandit':[30,15,5,50]
 }
 def attack(hp,ad,selflck,enemylck):
-    dodgeChanceMin=int(enemylck/3)
-    dodgeChanceMax=int(enemylck*1.25)
-    hitChanceMin=int(selflck/2)
-    hitChanceMax=int(selflck*2)
-    hit=random.randint(hitChanceMin,hitChanceMax)
-    dodge=random.randint(dodgeChanceMin,dodgeChanceMax)
+    hit=random.randint(1,100)
+    dodge=random.randint(1,100)
+    hit=hit+selflck
+    dodge=dodge+enemylck
     #prints for debug
     print(f'Hit a fost {hit}, dodge a fost {dodge}\n')
     finalDmg=0
     if(hit>dodge):
-        if(hit>=2*dodge):
+        if(hit-dodge>40):
             damageOne=random.randint(int(ad/2),ad)
             damageTwo=random.randint(int(ad/2),ad)
+            finalDmg=damageOne+damageTwo
             hp=hp-finalDmg
             print(f'Crit!\n')
         else:
