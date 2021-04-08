@@ -3,12 +3,15 @@ def attack(hp,ad,selflck,enemylck):
     dodgeChance=enemylck
     hitChance=selflck
     hit=random.randint(1+hitChance/2,hitChance*2)
-    dodge=random.randint(dodgeChance/3,dodgeChance)
+    dodge=random.randint(dodgeChance/3,dodgeChance*1.25)
     if(hit>dodge)
         if(hit>=2*dodge)
-            hp=hp-2*ad
+            finalDmg=0
+            damageOne=random.randint(ad/2,ad)
+            damageTwo=random.randint(ad/2,ad)
+            hp=hp-finalDmg
         else:
-            hp=hp-ad
+            hp=hp-random.randint(ad/2,ad)
     return hp
 
 classes={
