@@ -17,8 +17,8 @@ classes={
 def eattack(hp,ad,selflck,enemylck):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
-    hit=hit+selflck
-    dodge=dodge+enemylck
+    hit=hit+int(selflck*0.7)
+    dodge=dodge+int(enemylck*0.5)
     #prints for debug
     #print(f'Hit a fost {hit}, dodge a fost {dodge}\n')
     finalDmg=0
@@ -41,8 +41,8 @@ def eattack(hp,ad,selflck,enemylck):
 def pattack(hp,ad,selflck,enemylck,isw,php):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
-    hit=hit+selflck
-    dodge=dodge+enemylck
+    hit=hit+int(selflck*0.7)
+    dodge=dodge+int(enemylck*0.5)
     #prints for debug
     #print(f'Hit a fost {hit}, dodge a fost {dodge}\n')
     finalDmg=0
@@ -143,9 +143,11 @@ while(deathCheck(playerStats[0],enemyStats[0])):
             fireBallDmg=random.randint(80,100)
             enemyStats[0]=enemyStats[0]=fireBallDmg
             print(f'Dai un imens {fireBallDmg} damage!')
+        playerSpecial=0
     if moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
         print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 2 atacuri!')
         shadowSneak=2
+        playerSpecial=0
     elif(moveChoice=='special' and playerSpecial==0):
         print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
     #enemymoves
@@ -165,7 +167,3 @@ if(playerStats[0]<=0):
     print(f'Game over!')
 else:
     print(f'A winner is you!')    
-    
-
-
-#print(playerclass)
