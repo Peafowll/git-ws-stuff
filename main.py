@@ -12,6 +12,7 @@ classes={
     'mage':[30,10,60,20],
     'ranger':[35,35,15,15],
     'bandit':[30,15,5,50]
+    
 }
 
 def attack(hp,ad,selflck,enemylck):
@@ -38,6 +39,7 @@ def attack(hp,ad,selflck,enemylck):
     #print for debug
     #print(f'HP a ramas {hp} dupa un atac care a dat {finalDmg}')
     return hp
+<<<<<<< HEAD
 
 def deathCheck(playerHP,mobHP):
     if(playerHP<=0 or mobHP<=0):
@@ -45,6 +47,19 @@ def deathCheck(playerHP,mobHP):
     return True
 
 
+=======
+def heal(hp,inteligence):
+    healing = random.randint(inteligence//5,15)
+    hp += healing
+    print(f'Ti-ai dat heal {healing} HP.')
+    return hp
+def deathCheck(playerHP,mobHP):
+    if(playerHP<=0 or mobHP<=0):
+        return False
+    return True
+
+
+>>>>>>> c9211065a312e21bc944e1624c7d967c0b2cc9b6
 
 #game
 name=str(input('Care este numele tau?'))
@@ -68,6 +83,7 @@ while(deathCheck(playerStats[0],enemyStats[0])):
     print(moveChoice.lower())
     moveChoice=moveChoice.lower()
     while(moveChoice not in moves):
+<<<<<<< HEAD
         moveChoice=str(input('Misacre invalida.Poti alege din urmatoare lista de miscari:'+' '+movesString.capitalize()+' '))
     if moveChoice=='attack':
         enemyStats[0]= attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
@@ -76,3 +92,11 @@ while(deathCheck(playerStats[0],enemyStats[0])):
 attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
 #print(playerclass)
 
+=======
+        moveChoice=str(input('Miscare invalida.Poti alege din urmatoarea lista de miscari:'+' '+movesString.capitalize()+' '))
+    if moveChoice=='attack':
+        enemyStats[0]= attack(enemyStats[0],playerStats[1],playerStats[3],enemyStats[3])
+    if moveChoice=='heal':
+        playerStats[0]= heal(playerStats[0],playerStats[2])
+#print(playerclass)
+>>>>>>> c9211065a312e21bc944e1624c7d967c0b2cc9b6
