@@ -1,6 +1,6 @@
 import random, time
 mobs={
-    'mimic':[50,10,10,40],
+    'mimic':[50,10,10,30],
     'dryad':[70,10,60,25],
     'chompy dingus':[50,10,10,25],
     'mind flayer':[100,15,30,20],
@@ -11,10 +11,11 @@ classes={
     'warrior':[60,20,10,10],
     'mage':[30,10,60,20],
     'ranger':[20,30,25,15],
-    'bandit':[30,15,5,50]
+    'bandit':[30,15,5,50],
+    'god':[1000,1000,1000,1000]
     
 }
-def eattack(hp,ad,selflck,enemylck):
+def eattack(hp,ad,selflck,enemylck,ism):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
     hit=hit+int(selflck*0.8)
@@ -26,9 +27,14 @@ def eattack(hp,ad,selflck,enemylck):
         if(hit-dodge>40):
             damageOne=random.randint(int(ad/2),ad)
             damageTwo=random.randint(int(ad/2),ad)
+            mikc=random.randint(1,4)
             finalDmg=damageOne+damageTwo
-            hp=hp-finalDmg
-            print(f'Crit!\nTi-ai luat {finalDmg} damage!')
+            if ism and mikc==1:
+                hp=0
+                print("Mimicul te-a inghitit! Acum esti mort")
+            else:
+                hp=hp-finalDmg
+                print(f'Crit!\nTi-ai luat {finalDmg} damage!')
         else:
             finalDmg=random.randint(int(ad/2),ad)
             hp=hp-finalDmg
@@ -75,6 +81,10 @@ def deathCheck(playerHP,mobHP):
     if(playerHP<=0 or mobHP<=0):
         return False
     return True
+def suicide(hp):
+    hp=0
+    print("Te-ai sinucis")
+    return hp
 def coup(ehp,emhp,pad):
     coupDmg=emhp-ehp
     coupDmg=int(coupDmg*(3/4))
@@ -100,12 +110,15 @@ if playerClass == "warrior":
     iswarrior = 1
 maxHP=playerStats[0]
 enemyName, enemyStats = random.choice(list(mobs.items()))
+ismimic=0
+if enemyName == 'mimic':
+    ismimic=1
 if(enemyName!='mind flayer'):
     print(f"Te bati cu un {enemyName}.")
 else:
     print(f'T̴e̸ ̸b̶a̴t̸i̷ ̶c̶u̴ ̷u̵n̴ ̶m̴i̷n̵d̴ ̶f̵l̶a̶y̶e̷r̵.̶ ̴O̴h̸ ̵n̸u̴')
 enemyMaxHP=enemyStats[0]
-moves=['attack','heal','special']
+moves=['attack','heal','special','suicide']
 movesString=' '.join([str(elem) for elem in moves])
 playerSpecial=1
 shadowSneak=0
@@ -141,6 +154,9 @@ while(deathCheck(playerStats[0],enemyStats[0])):
         if playerStats[0]>maxHP:
             playerStats[0]=maxHP
             print('Nu poti sa iti dau heal peste hp maxim, deci stagnezi pe '+str(maxHP)+'HP')
+    if moveChoice=='suicide':
+        playerStats[0]=suicide(playerStats[0])
+        break
     if moveChoice=='special' and playerClass=='warrior':
         print("Nu ai un atac special, dar dai extra damage sub jumate HP!")
     elif moveChoice=='special' and playerClass=='ranger' and playerSpecial==1:
@@ -173,7 +189,7 @@ while(deathCheck(playerStats[0],enemyStats[0])):
     #enemymoves
     time.sleep(2)
     if(shadowSneak==0):
-        playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3])
+        playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3],ismimic)
     else:
         print('Inamicul nu te-a vazut si te-a ratat!')
         shadowSneak=shadowSneak-1
