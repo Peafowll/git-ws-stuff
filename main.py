@@ -154,15 +154,13 @@ while(deathCheck(playerStats[0],enemyStats[0])):
         print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
     #enemymoves
     time.sleep(2)
-    enemyChoice=1
-    if(enemyChoice==1):
-        if(shadowSneak==0):
-            playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3])
-        else:
-            print('Inamicul nu te-a vazut si te-a ratat!')
-            shadowSneak=shadowSneak-1
-        if playerStats[0]<=0:
-            break
+    if(shadowSneak==0):
+        playerStats[0]=eattack(playerStats[0],enemyStats[1],enemyStats[3],playerStats[3])
+    else:
+        print('Inamicul nu te-a vazut si te-a ratat!')
+        shadowSneak=shadowSneak-1
+    if playerStats[0]<=0:
+        break
     time.sleep(1)
 
 if(playerStats[0]<=0):
