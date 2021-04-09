@@ -10,7 +10,7 @@ mobs={
 classes={
     'warrior':[60,20,10,10],
     'mage':[30,10,60,20],
-    'ranger':[25,35,25,15],
+    'ranger':[20,30,25,15],
     'bandit':[30,15,5,50]
     
 }
@@ -77,7 +77,8 @@ def deathCheck(playerHP,mobHP):
     return True
 def coup(ehp,emhp,pad):
     coupDmg=emhp-ehp
-    coupDmg=coupDmg+random.randint(int(pad/1.5),int(pad*1.2))
+    coupDmg=int(coupDmg*(3/4))
+    coupDmg=coupDmg+random.randint(int(pad/1.75),pad)
     ehp=ehp-coupDmg
     print("Ai lovit un punct deja ranit al inamicului, dand "+str(coupDmg)+" damage")
     return ehp
