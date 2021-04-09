@@ -1,7 +1,7 @@
 import random, time
 mobs={
-    'mimic':[60,10,10,40],
-    'dryad':[80,10,60,30],
+    'mimic':[50,10,10,40],
+    'dryad':[70,10,60,25],
     'chompy dingus':[50,10,10,25],
     'mind flayer':[100,15,30,20],
     'goblin':[20,5,10,70],
@@ -10,15 +10,15 @@ mobs={
 classes={
     'warrior':[60,20,10,10],
     'mage':[30,10,60,20],
-    'ranger':[35,35,15,15],
-    'bandit':[35,15,10,40]
+    'ranger':[25,35,25,15],
+    'bandit':[30,15,5,50]
     
 }
 def eattack(hp,ad,selflck,enemylck):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
-    hit=hit+int(selflck*0.7)
-    dodge=dodge+int(enemylck*0.5)
+    hit=hit+int(selflck*0.8)
+    dodge=dodge+int(enemylck*0.4)
     #prints for debug
     #print(f'Hit a fost {hit}, dodge a fost {dodge}\n')
     finalDmg=0
@@ -41,8 +41,8 @@ def eattack(hp,ad,selflck,enemylck):
 def pattack(hp,ad,selflck,enemylck,isw,php):
     hit=random.randint(1,100)
     dodge=random.randint(1,100)
-    hit=hit+int(selflck*0.7)
-    dodge=dodge+int(enemylck*0.5)
+    hit=hit+int(selflck*0.8)
+    dodge=dodge+int(enemylck*0.4)
     #prints for debug
     #print(f'Hit a fost {hit}, dodge a fost {dodge}\n')
     finalDmg=0
@@ -147,8 +147,8 @@ while(deathCheck(playerStats[0],enemyStats[0])):
                 break
         playerSpecial=0
     elif moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
-        print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 2 atacuri!')
-        shadowSneak=2
+        print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 3 atacuri!')
+        shadowSneak=3
         playerSpecial=0
     elif(moveChoice=='special' and playerSpecial==0):
         print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
