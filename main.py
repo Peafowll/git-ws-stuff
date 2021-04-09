@@ -125,12 +125,12 @@ while(deathCheck(playerStats[0],enemyStats[0])):
             print('Nu poti sa iti dau heal peste hp maxim, deci stagnezi pe '+str(maxHP)+'HP')
     if moveChoice=='special' and playerClass=='warrior':
         print("Nu ai un atac special, dar dai extra damage sub jumate HP!")
-    if moveChoice=='special' and playerClass=='ranger' and playerSpecial==1:
+    elif moveChoice=='special' and playerClass=='ranger' and playerSpecial==1:
         enemyStats[0]=coup(enemyStats[0],enemyMaxHP,playerStats[1])
         playerSpecial=0
         if enemyStats[0]<=0:
             break
-    if moveChoice=='special' and playerClass=='mage' and playerSpecial==1:
+    elif moveChoice=='special' and playerClass=='mage' and playerSpecial==1:
         wandFizzle=random.randint(1,10)
         if wandFizzle>1 and wandFizzle<=4:
             print("Incerci sa iti aduni energie pentru un spell mare, dar te distrage un fluture!")
@@ -141,10 +141,12 @@ while(deathCheck(playerStats[0],enemyStats[0])):
         if wandFizzle==1:
             print("Incantezi perfect cel mai greu spell al tau si iese o bila de foc din bagheta!")
             fireBallDmg=random.randint(80,100)
-            enemyStats[0]=enemyStats[0]=fireBallDmg
+            enemyStats[0]=enemyStats[0]-fireBallDmg
             print(f'Dai un imens {fireBallDmg} damage!')
+            if enemyStats[0]<=0:
+                break
         playerSpecial=0
-    if moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
+    elif moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
         print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 2 atacuri!')
         shadowSneak=2
         playerSpecial=0
