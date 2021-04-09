@@ -166,7 +166,7 @@ while(deathCheck(playerStats[0],enemyStats[0])):
         playerSpecial=0
     elif moveChoice=='special' and playerClass=='bandit' and playerSpecial==1:
         print('Te ascunzi in umbre, luandut-i 0 damage de la urmatoarele 3 atacuri!')
-        shadowSneak=3
+        shadowSneak=2
         playerSpecial=0
     elif(moveChoice=='special' and playerSpecial==0):
         print("Ti-ai folosit deja speciala, si ti-ai pierdut turnul!")
