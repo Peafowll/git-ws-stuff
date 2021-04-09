@@ -100,7 +100,10 @@ if playerClass == "warrior":
     iswarrior = 1
 maxHP=playerStats[0]
 enemyName, enemyStats = random.choice(list(mobs.items()))
-print(f"Te bati cu un {enemyName}.")
+if(enemyName!='mind flayer'):
+    print(f"Te bati cu un {enemyName}.")
+else:
+    print(f'T̴e̸ ̸b̶a̴t̸i̷ ̶c̶u̴ ̷u̵n̴ ̶m̴i̷n̵d̴ ̶f̵l̶a̶y̶e̷r̵.̶ ̴O̴h̸ ̵n̸u̴')
 enemyMaxHP=enemyStats[0]
 moves=['attack','heal','special']
 movesString=' '.join([str(elem) for elem in moves])
@@ -109,7 +112,21 @@ shadowSneak=0
 #enemyStats = [ int(x) for x in enemyStats ]
 #playerStats = [ int(x) for x in playerStats ]
 while(deathCheck(playerStats[0],enemyStats[0])):
-    print(f'Tu ai {playerStats[0]}HP iar {enemyName} are {enemyStats[0]}HP')
+    mindFlayMessUp=random.randint(1,3)
+    if enemyName !='mind flayer':
+        print(f'Tu ai {playerStats[0]}HP iar {enemyName} are {enemyStats[0]}HP')
+    else:
+        if(mindFlayMessUp==1):
+            print(f'Tu ai {random.randint(-1000,1000)}HP iar {enemyName} are {random.randint(-1000,1000)}HP')
+        elif(mindFlayMessUp==2):
+            print(f'आपके पास {playerStats[0]} HP है और माइंड फ्लेयर में {enemyStats[0]} HP है')
+        elif(mindFlayMessUp==3):
+            count=random.randint(1,3)
+            while(count>0):
+                print(f'Ay caramba donde esta la biblioteca')
+                count-=1
+            
+
     #playermoves
     moveChoice=str(input('Poti alege din urmatoare lista de miscari:'+' '+movesString.capitalize()+' '))
     moveChoice=moveChoice.lower()
